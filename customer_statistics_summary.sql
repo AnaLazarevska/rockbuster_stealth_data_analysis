@@ -1,19 +1,18 @@
 -- This query calculates various statistics about the customer table, including active and inactive customers, store distribution, and customer creation dates.
 
-WITH 							
-  -- Calculate the number of active customers for each customer id
+WITH 					
+	-- Calculate the number of active customers for each customer id 
 	active_customers (customer_id, active_customers)						
-	AS (						
+	AS (
 		SELECT 					
 			customer_id,				
 			COUNT(customer_id) AS active_customers				
 		FROM customer					
 		WHERE active = 1					
 		GROUP BY 
-      customer_id					
+			customer_id					
 	),					
-  -- Calculate the number of inactive customers for each customer id
-	inactive_customers (customer_id, inactive_customers)						
+	-- Calculate the number of inactive customers for each customer id inactive_customers (customer_id, inactive_customers)						
 	AS (						
 		SELECT 					
 			customer_id,				
@@ -21,9 +20,9 @@ WITH
 		FROM customer					
 		WHERE active = 0					
 		GROUP BY 
-      customer_id					
-	),			
-  -- Calculate the number of customers associated with store 1 for each customer id
+			customer_id					
+		),			
+	-- Calculate the number of customers associated with store 1 for each customer id 
 	customers_store_1 (customer_id, store_id)						
 	AS (						
 		SELECT 					
@@ -32,9 +31,9 @@ WITH
 		FROM customer					
 		WHERE store_id = 1					
 		GROUP BY 
-      customer_id					
+      			customer_id					
 	),						
-  -- Calculate the number of customers associated with store 2 for each customer id
+	-- Calculate the number of customers associated with store 2 for each customer id
 	customers_store_2 (customer_id, store_id)						
 	AS (						
 		SELECT 					
@@ -43,7 +42,7 @@ WITH
 		FROM customer					
 		WHERE store_id = 2					
 		GROUP BY 
-      customer_id					
+      			customer_id					
 	)						
 SELECT 							
 	COUNT(B.customer_id) AS active_customers,						
@@ -60,5 +59,5 @@ FROM customer A
 	LEFT JOIN customers_store_1 D ON A.customer_id = D.customer_id						
 	LEFT JOIN customers_store_2 E ON A.customer_id = E.customer_id						
 GROUP BY 
-  B.active_customers, 
-  C.inactive_customers;			
+	B.active_customers, 
+	C.inactive_customers;			
