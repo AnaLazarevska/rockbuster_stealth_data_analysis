@@ -13,11 +13,11 @@ FROM film D
 	LEFT JOIN rental B ON C.inventory_id = B.inventory_id			
 	LEFT JOIN payment A ON A.rental_id = B.rental_id			
 GROUP BY 
-  D.title, 
-  B.rental_id, 
-  F.name, 
-  B.return_date, 
-  B.rental_date				
+  	D.title, 
+  	B.rental_id, 
+  	F.name, 
+  	B.return_date, 
+  	B.rental_date				
 ORDER BY 
-  title, 
-  rental_id;				
+  	title, 
+  	rental_id;
