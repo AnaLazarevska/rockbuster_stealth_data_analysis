@@ -16,4 +16,4 @@ FROM payment A
 	INNER JOIN city D ON C.city_id = D.city_id		
 	INNER JOIN country E ON D.country_id = E.country_id		
 ORDER BY 
-  last_name;			
+  	last_name;
